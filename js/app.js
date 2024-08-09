@@ -192,6 +192,7 @@ function books () {
 } 
 // call the 'books' function to run the code inside
 books()
+
 /*----------- Event Listeners ----------*/
 
 booksMovies.addEventListener("click", () => {

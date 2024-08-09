@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 25vh;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: zephyr;
+/* not understanding how to change the font via the @font-face */
+/* method, specifically the URL  */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face */
+}
+
+button {
+    margin: 15px;
+    font-size: 20px;
+    color: darkred
+    /* ask about this */
+    /* background-color: transparent; */
+    border: 1px solid rgba(0,0,0,.1);
+    width: 150px;
+    height: 150px;
+    border-radius: 25%;
+}
+

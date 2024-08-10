@@ -1,8 +1,8 @@
 /*-------------- Constants -------------*/
 // !const handleMov = (event) => {
-     //!logic for the event handler, update state variables, etc.
+//!logic for the event handler, update state variables, etc.
 
-     //!Render data to the DOM
+//!Render data to the DOM
 //!     render()
 // !}
 
@@ -187,35 +187,10 @@ const displayMessage2 = document.querySelector('.displayMessage2')
 const tspQuestion = document.querySelector('.tspQuestion')
 const choices2 = document.querySelector('.choices2')
 
-// if (booksMoviesInfo.length > 0) {
-//      for (let i = 0; i < booksMoviesInfo.length; i++){
-          
-//      }
-// } else {
-
-// }
-
-// for (let i = 0; i < booksMoviesInfo.length; i++) {
-//      // if (booksMoviesInfo.length);
-//      console.log(booksMoviesInfo[i]) // returned undefined
-// }
-// // i need this for loop to interate thru the booksMoviesInfo array and populate each question with the choices.
+// i need this for loop to interate thru the booksMoviesInfo array and populate each question with the choices.
 
 /*-------------- Functions -------------*/
 // reusuable blocks of code designed to perform a specific task
-
-// declare a function with its name called 'books'
-// 'books' can be whatever i want
-// function books () {
-//      // create a dom element
-//      let bookMovie = document.createElement('div')
-//      // access the dom element's text content and assign it to 'whatever i want'
-//      bookMovie.textContent = 'whatever I want'
-//      // 'access' the queried dom element and append the created dom element 
-//      movieQuestions.append(bookMovie)
-// } 
-// // call the 'books' function to run the code inside
-// books()
 
 let index = 0
 function moveForwardOne() {
@@ -226,23 +201,19 @@ function moveForwardOne() {
 // a function that 'listens' for a specific event to occur
 
 booksMovies.addEventListener("click", () => {
-     // need the 'click' to register audio and bring up the 'All Books & Movies
-     // id/quiz
-     console.log(booksMoviesInfo[index])
-
-// with the data from the individual question, render its parts to the dom
+     // need the 'click' to register audio and bring up the 'All Books & Movies id/quiz
+     // with the data from the individual question, render its parts to the dom
      displayMessage1.textContent = booksMoviesInfo[index].question
      // target the choices of the current booksMovieInfo[index]
-     booksMoviesInfo[index].choices.forEach((choice)=> {
+     booksMoviesInfo[index].choices.forEach((choice) => {
           console.log(choice)
           //create a button element line 211
           let bookMovie = document.createElement('button')
           //assign the new button text content to the choice value
           bookMovie.textContent = choice
           //append the new button to the choices element
-          booksMoviesInfo.choices.append(bookMovie)
+          choices1.appendChild(bookMovie)
      })
-     console.log('I clicked the books button!')
      moveForwardOne()
 })
 

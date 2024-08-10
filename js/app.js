@@ -179,11 +179,11 @@ const tspInfo = [
 
 /*----- Cached Element References  -----*/
 // when you access an element in the DOM
-const displayMessage1 = document.querySelector('.displayMessage1')
+const displayMessage1 = document.querySelector('.displayMessage1') // this will be the win/lose message
 const bmQuestion = document.querySelector('.bmQuestion')
 const choices1 = document.querySelector('.choices1')
 
-const displayMessage2 = document.querySelector('.displayMessage2')
+const displayMessage2 = document.querySelector('.displayMessage2') // this will be the win/lose message
 const tspQuestion = document.querySelector('.tspQuestion')
 const choices2 = document.querySelector('.choices2')
 
@@ -207,7 +207,7 @@ booksMovies.addEventListener("click", () => {
      // target the choices of the current booksMovieInfo[index]
      booksMoviesInfo[index].choices.forEach((choice) => {
           console.log(choice)
-          //create a button element line 211
+          //create a button element 
           let bookMovie = document.createElement('button')
           //assign the new button text content to the choice value
           bookMovie.textContent = choice
@@ -216,10 +216,18 @@ booksMovies.addEventListener("click", () => {
      })
      moveForwardOne()
 })
-
+// choices1.addEventListener("click", () =>{
+//      //need the 'click' to display only the current question's choices and not other question's choices
+//      displayMessage1.textContent = booksMoviesInfo[index].answer
+//      // console.log(booksMoviesInfo[index].answer)
+//      booksMoviesInfo[index].answer.forEach((ans) => {
+//           console.log(ans)
+//      })
+// })
 
 tsp.addEventListener("click", () => {
      // need the 'click' to register audio and bring up the 'TSP' id/quiz
      console.log('I clicked the tsp button!')
 })
 
+// nicole and kyle recommended completing the tic-tac-toe deliverable then returning to this to restructure my code. 

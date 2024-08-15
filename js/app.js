@@ -83,7 +83,6 @@ const booksMoviesInfo = [
           answer: 'a. he imprinted on her',
      },
 ]
-console.log(booksMoviesInfo)
 
 const tspInfo = [
      {
@@ -118,7 +117,7 @@ const tspInfo = [
      },
      {
           question: 'Q7. Live, Laugh, _____',
-          choices: ['a. Loca', 'b. La Push', 'c. Learn', 'd. Loca'],
+          choices: ['a. Lost', 'b. La Push', 'c. Learn', 'd. Loca'],
           answer: 'd. Loca',
      },
      {
@@ -135,18 +134,15 @@ const audio = new Audio('../audio/bellas_lullaby.mp3');
 audio.volume = 0.2;
 audio.loop = false;
 
-
-
 /*----- Cached Element References  -----*/
 // when you access an element in the DOM
 
 let booksMovies = document.querySelector('#booksmovies')
 let tsp = document.querySelector('#tsp')
 let movieQuestions = document.querySelector('.booksmoviesrow')
-let displayMessage = document.querySelector('.displayMessage') 
+let displayMessage = document.querySelector('.displayMessage')
 let question = document.querySelector('.question')
 let choices = document.querySelector('.choices')
-
 
 /*-------------- Functions -------------*/
 // reusuable blocks of code designed to perform a specific task
@@ -161,144 +157,114 @@ function moveForwardOne() {
 
 booksMovies.addEventListener("click", () => {
      // need the 'click' to register audio and bring up the 'All Books & Movies id/quiz
-     if (index != booksMoviesInfo.length)
-          {
-               
-               // with the data from the individual question, render its parts to the dom
-               displayMessage.textContent = booksMoviesInfo[index].question
-               // remove previous children of choices
-               choices.replaceChildren()
-               // target the choices of the current booksMovieInfo[index]
-               booksMoviesInfo[index].choices.forEach((choice) => {
-                    console.log(choice)
-                    //create a button element for question choices/options
-                    let bookMovieOptions = document.createElement('button')
-                    //assign the new button text content to the choice value
-                    bookMovieOptions.textContent = choice
-                    // add an event listener to make choices button clickable
-                    // this is not working, it removed my buttons
-                    bookMovieOptions.addEventListener('click', () => {
-                         // displayMessage.textContent = ''
-                        if (index != booksMoviesInfo.length)
-                        {
-                         displayMessage.textContent +=' '+ booksMoviesInfo[index].answer
-                         console.log(`Button clicked: ${choice}`)
-                         
+     if (index != booksMoviesInfo.length) {
+          // with the data from the individual question, render its parts to the dom
+          displayMessage.textContent = booksMoviesInfo[index].question
+          // remove previous children of choices
+          choices.replaceChildren()
+          // target the choices of the current booksMovieInfo[index]
+          booksMoviesInfo[index].choices.forEach((choice) => {
+               //create a button element for question choices/options
+               let bookMovieOptions = document.createElement('button')
+               //assign the new button text content to the choice value
+               bookMovieOptions.textContent = choice
+               // add an event listener to make choices button clickable
+               // this is not working, it removed my buttons
+               bookMovieOptions.addEventListener('click', () => {
+                    // displayMessage.textContent = ''
+                    if (index != booksMoviesInfo.length) {
+                         displayMessage.textContent += ' ' + booksMoviesInfo[index].answer
                          index = checkResponse(booksMoviesInfo[index], choice, displayMessage, index, 1)
-                        }
-                    })
-                    //append the new button to the choices element
-                    choices.appendChild(bookMovieOptions)
+                    }
                })
-          }
-          else if (index == booksMoviesInfo.length)
-          {
-               checkGameOver()
-          }
+               //append the new button to the choices element
+               choices.appendChild(bookMovieOptions)
+          })
+     }
+     else if (index == booksMoviesInfo.length) {
+          checkGameOver()
+     }
 })
-function checkGameOver()
-{
-     if (userScore == 10)
-     {
+
+function checkGameOver() {
+     if (userScore == 10) {
           displayMessage.textContent = 'You Win!'
           userScore = 0
      }
-     else if (userScore < 10)
-     {
+     else if (userScore < 10) {
           displayMessage.textContent = 'You Lose!'
           userScore = 0
      }
 }
 
-function checkGameOver1()
-{
-     if (userScore2 >= 5)
-          {
-               displayMessage.textContent = 'You Win!'
-               userScore2 = 0
-          }
-          else if (userScore2 < 5)
-          {
-               displayMessage.textContent = 'You Lose!'
-               userScore2 = 0
-          }
+function checkGameOver1() {
+     if (userScore2 >= 5) {
+          displayMessage.textContent = 'You Win!'
+          userScore2 = 0
+     }
+     else if (userScore2 < 5) {
+          displayMessage.textContent = 'You Lose!'
+          userScore2 = 0
+     }
 }
-function checkResponse(bookInfo, userChoice, response, questionNum, score)
-{
+function checkResponse(bookInfo, userChoice, response, questionNum, score) {
      let quiz = bookInfo.question
      let answer = bookInfo.answer
-  
-     if (answer == userChoice)
-     {
+     if (answer == userChoice) {
           response.textContent = 'correct'
-          if (score == 1)
-               {
-                    userScore++
-               }
-               else if (score == 2)
-                  {
-                     userScore2++
-                  }
-          
-     }
-     else 
-     {
-          response.textContent = 'incorrect ' 
+          if (score == 1) {
+               userScore++
+          }
+          else if (score == 2) {
+               userScore2++
+          }
+     } else {
+          response.textContent = 'incorrect '
      }
      questionNum++
      let scoreCount = document.getElementById('scorecount')
-     if (score == 1)
-          {
-               scoreCount.innerHTML = 'Current Score: '+userScore
-          }
-          else if (score == 2)
-             {
-               scoreCount.innerHTML = 'Current Score: '+userScore2
-             }
-
-     return questionNum
+     if (score == 1) {
+          scoreCount.innerHTML = 'Current Score: ' + userScore
+     }
+     else if (score == 2) {
+          scoreCount.innerHTML = 'Current Score: ' + userScore2
+     }
+      return questionNum
 }
 tsp.addEventListener("click", () => {
      // need the 'click' to register audio and bring up the 'TSP' id/quiz
-     if (index2 != tspInfo.length)
-          {
-               
-               // with the data from the individual question, render its parts to the dom
-               displayMessage.textContent = tspInfo[index2].question
-               // remove previous children of choices
-               choices.replaceChildren()
-               // target the choices of the current booksMovieInfo[index2]
-               tspInfo[index2].choices.forEach((choice) => {
-                    console.log(choice)
-                    //create a button element for question choices/options
-                    let tspOptions = document.createElement('button')
-                    //assign the new button text content to the choice value
-                    tspOptions.textContent = choice
-                    // add an event listener to make choices button clickable
-                    // this is not working, it removed my buttons
-                    tspOptions.addEventListener('click', () => {
-                         // displayMessage.textContent = ''
-                        if (index2 != tspInfo.length)
-                        {
-                         displayMessage.textContent +=' '+ tspInfo[index2].answer
-                         console.log(`Button clicked: ${choice}`)
-                         
+     if (index2 != tspInfo.length) {
+          // with the data from the individual question, render its parts to the dom
+          displayMessage.textContent = tspInfo[index2].question
+          // remove previous children of choices
+          choices.replaceChildren()
+          // target the choices of the current booksMovieInfo[index2]
+          tspInfo[index2].choices.forEach((choice) => {
+               //create a button element for question choices/options
+               let tspOptions = document.createElement('button')
+               //assign the new button text content to the choice value
+               tspOptions.textContent = choice
+               // add an event listener to make choices button clickable
+               // this is not working, it removed my buttons
+               tspOptions.addEventListener('click', () => {
+                    // displayMessage.textContent = ''
+                    if (index2 != tspInfo.length) {
+                         displayMessage.textContent += ' ' + tspInfo[index2].answer
                          index2 = checkResponse(tspInfo[index2], choice, displayMessage, index2, 2)
-                        }
-                    })
-                    //append the new button to the choices element
-                    choices.appendChild(tspOptions)
+                    }
                })
-          }
-          else if (index2 == tspInfo.length)
-          {
-               checkGameOver1()
-          }
+               //append the new button to the choices element
+               choices.appendChild(tspOptions)
+          })
+     }
+     else if (index2 == tspInfo.length) {
+          checkGameOver1()
+     }
 })
 
-document.getElementById('playButton').addEventListener('click', () =>{
+document.getElementById('playButton').addEventListener('click', () => {
      audio.play()
 })
-document.getElementById('pauseButton').addEventListener('click', () =>{
+document.getElementById('pauseButton').addEventListener('click', () => {
      audio.pause()
 })

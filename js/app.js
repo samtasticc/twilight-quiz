@@ -145,12 +145,6 @@ const displayMessage = document.querySelector('.displayMessage') // this will be
 const question = document.querySelector('.question')
 const choices = document.querySelector('.choices')
 
-// do i really need these below? no ya dont
-// const displayMessage2 = document.querySelector('.displayMessage2') 
-// const tspQuestion = document.querySelector('.tspQuestion')
-// const choices2 = document.querySelector('.choices2')
-
-// i need this for loop to interate thru the booksMoviesInfo array and populate each question with the choices.
 
 /*-------------- Functions -------------*/
 // reusuable blocks of code designed to perform a specific task
@@ -176,23 +170,20 @@ booksMovies.addEventListener("click", () => {
           let bookMovieOptions = document.createElement('button')
           //assign the new button text content to the choice value
           bookMovieOptions.textContent = choice
-          // add an event listener to... do what? click the answer button?
+          // add an event listener to make choices button clickable
+          // this is not working, it removed my buttons
+          booksMovieOptions.addEventListener('click', () => {
+               displayMessage.textContent = booksMoviesInfo[index].choices
+               console.log(`Button clicked: ${choice}`)
+          })
           //append the new button to the choices element
           choices.appendChild(bookMovieOptions)
      })
 })
-// choices1.addEventListener("click", () =>{
-     //need the 'click' to display only the current question's choices and not other question's choices
-//      displayMessage1.textContent = booksMoviesInfo[index].answer
-     // console.log(booksMoviesInfo[index].answer)
-//      booksMoviesInfo[index].answer.forEach((ans) => {
-//           console.log(ans)
-//      })
-// })
+
 
 tsp.addEventListener("click", () => {
      // need the 'click' to register audio and bring up the 'TSP' id/quiz
-     console.log('I clicked the tsp button!')
      displayMessage.textContent = tspInfo[index].question
      choices.replaceChildren()
      tspInfo[index].choices.forEach((choice) => {
@@ -202,4 +193,3 @@ tsp.addEventListener("click", () => {
           choices.appendChild(tspOptions)
      })
 })
-

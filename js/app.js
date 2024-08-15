@@ -6,11 +6,7 @@
 //!     render()
 // !}
 
-const booksMovies = document.querySelector('#booksmovies')
 
-const tsp = document.querySelector('#tsp')
-
-const movieQuestions = document.querySelector('.booksmoviesrow')
 
 const booksMoviesInfo = [
      {
@@ -128,50 +124,10 @@ const tspInfo = [
           answer: 'd. Loca',
      },
      {
-          question: 'Q8. ',
-          choices: [''],
-          answer: '',
-     },
-     {
-          question: '',
-          choices: [''],
-          answer: '',
-     },
-     {
-          question: '',
-          choices: [''],
-          answer: '',
-     },
-     {
-          question: '',
-          choices: [''],
-          answer: '',
-     },
-     {
-          question: '',
-          choices: [''],
-          answer: '',
-     },
-     {
-          question: '',
-          choices: [''],
-          answer: '',
-     },
-     {
-          question: '',
-          choices: [''],
-          answer: '',
-     },
-     {
-          question: '',
-          choices: [''],
-          answer: '',
-     },
-     {
-          question: '',
-          choices: [''],
-          answer: '',
-     },
+          question: 'Q8. RATTIES 4 LYFE',
+          choices: ['a. ✨🐀✨'],
+          answer: 'a. ✨🐀✨',
+     }
 ]
 /*---------- Variables (state) ---------*/
 // containers for storing data (const, let)
@@ -179,13 +135,20 @@ const tspInfo = [
 
 /*----- Cached Element References  -----*/
 // when you access an element in the DOM
-const displayMessage1 = document.querySelector('.displayMessage1') // this will be the win/lose message
-const bmQuestion = document.querySelector('.bmQuestion')
-const choices1 = document.querySelector('.choices1')
 
-const displayMessage2 = document.querySelector('.displayMessage2') // this will be the win/lose message
-const tspQuestion = document.querySelector('.tspQuestion')
-const choices2 = document.querySelector('.choices2')
+const booksMovies = document.querySelector('#booksmovies')
+const tsp = document.querySelector('#tsp')
+const movieQuestions = document.querySelector('.booksmoviesrow')
+
+
+const displayMessage = document.querySelector('.displayMessage') // this will be the win/lose message
+const question = document.querySelector('.question')
+const choices = document.querySelector('.choices')
+
+// do i really need these below? no ya dont
+// const displayMessage2 = document.querySelector('.displayMessage2') 
+// const tspQuestion = document.querySelector('.tspQuestion')
+// const choices2 = document.querySelector('.choices2')
 
 // i need this for loop to interate thru the booksMoviesInfo array and populate each question with the choices.
 
@@ -203,7 +166,9 @@ function moveForwardOne() {
 booksMovies.addEventListener("click", () => {
      // need the 'click' to register audio and bring up the 'All Books & Movies id/quiz
      // with the data from the individual question, render its parts to the dom
-     displayMessage1.textContent = booksMoviesInfo[index].question
+     displayMessage.textContent = booksMoviesInfo[index].question
+     // remove previous children of choices
+     choices.replaceChildren()
      // target the choices of the current booksMovieInfo[index]
      booksMoviesInfo[index].choices.forEach((choice) => {
           console.log(choice)
@@ -211,15 +176,15 @@ booksMovies.addEventListener("click", () => {
           let bookMovie = document.createElement('button')
           //assign the new button text content to the choice value
           bookMovie.textContent = choice
+          // add an event listener to... do what? click the answer button?
           //append the new button to the choices element
-          choices1.appendChild(bookMovie)
+          choices.appendChild(bookMovie)
      })
-     moveForwardOne()
 })
 // choices1.addEventListener("click", () =>{
-//      //need the 'click' to display only the current question's choices and not other question's choices
+     //need the 'click' to display only the current question's choices and not other question's choices
 //      displayMessage1.textContent = booksMoviesInfo[index].answer
-//      // console.log(booksMoviesInfo[index].answer)
+     // console.log(booksMoviesInfo[index].answer)
 //      booksMoviesInfo[index].answer.forEach((ans) => {
 //           console.log(ans)
 //      })
@@ -228,6 +193,6 @@ booksMovies.addEventListener("click", () => {
 tsp.addEventListener("click", () => {
      // need the 'click' to register audio and bring up the 'TSP' id/quiz
      console.log('I clicked the tsp button!')
+     displayMessage.textContent = tspInfo[index].question
 })
 
-// nicole and kyle recommended completing the tic-tac-toe deliverable then returning to this to restructure my code. 

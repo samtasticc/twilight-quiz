@@ -1,10 +1,4 @@
 /*-------------- Constants -------------*/
-// !const handleMov = (event) => {
-//!logic for the event handler, update state variables, etc.
-
-//!Render data to the DOM
-//!     render()
-// !}
 
 let userScore = 0;
 let currentQuestion = 0;
@@ -137,9 +131,10 @@ const tspInfo = [
 // containers for storing data (const, let)
 
 // src (optional): The URL of the audio file to load.
-// const audio = new Audio('C:\Users\Saman\Documents\code\ga\projects\twilight-quiz\audio\bellas_lullaby.mp3');
-// audio.volume = 0.5;
-// audio.loop = false;
+const audio = new Audio('../audio/bellas_lullaby.mp3');
+audio.volume = 0.2;
+audio.loop = false;
+
 
 
 /*----- Cached Element References  -----*/
@@ -189,7 +184,7 @@ booksMovies.addEventListener("click", () => {
                          displayMessage.textContent +=' '+ booksMoviesInfo[index].answer
                          console.log(`Button clicked: ${choice}`)
                          
-                         checkResponse(booksMoviesInfo[index], choice, displayMessage)
+                         index = checkResponse(booksMoviesInfo[index], choice, displayMessage, index, 1)
                         }
                     })
                     //append the new button to the choices element
@@ -206,64 +201,104 @@ function checkGameOver()
      if (userScore == 10)
      {
           displayMessage.textContent = 'You Win!'
+          userScore = 0
      }
      else if (userScore < 10)
      {
           displayMessage.textContent = 'You Lose!'
+          userScore = 0
      }
 }
-function checkResponse(bookInfo, userChoice, response)
+
+function checkGameOver1()
+{
+     if (userScore2 >= 5)
+          {
+               displayMessage.textContent = 'You Win!'
+               userScore2 = 0
+          }
+          else if (userScore2 < 5)
+          {
+               displayMessage.textContent = 'You Lose!'
+               userScore2 = 0
+          }
+}
+function checkResponse(bookInfo, userChoice, response, questionNum, score)
 {
      let quiz = bookInfo.question
      let answer = bookInfo.answer
-     
+  
      if (answer == userChoice)
      {
           response.textContent = 'correct'
-          userScore++
+          if (score == 1)
+               {
+                    userScore++
+               }
+               else if (score == 2)
+                  {
+                     userScore2++
+                  }
+          
      }
      else 
      {
           response.textContent = 'incorrect ' 
      }
-     index++
+     questionNum++
      let scoreCount = document.getElementById('scorecount')
-     scoreCount.innerHTML = 'Current Score: '+userScore
+     if (score == 1)
+          {
+               scoreCount.innerHTML = 'Current Score: '+userScore
+          }
+          else if (score == 2)
+             {
+               scoreCount.innerHTML = 'Current Score: '+userScore2
+             }
+
+     return questionNum
 }
 tsp.addEventListener("click", () => {
      // need the 'click' to register audio and bring up the 'TSP' id/quiz
-     if (index != booksMoviesInfo.length)
+     if (index2 != tspInfo.length)
           {
                
                // with the data from the individual question, render its parts to the dom
-               displayMessage.textContent = booksMoviesInfo[index].question
+               displayMessage.textContent = tspInfo[index2].question
                // remove previous children of choices
                choices.replaceChildren()
-               // target the choices of the current booksMovieInfo[index]
-               booksMoviesInfo[index].choices.forEach((choice) => {
+               // target the choices of the current booksMovieInfo[index2]
+               tspInfo[index2].choices.forEach((choice) => {
                     console.log(choice)
                     //create a button element for question choices/options
-                    let bookMovieOptions = document.createElement('button')
+                    let tspOptions = document.createElement('button')
                     //assign the new button text content to the choice value
-                    bookMovieOptions.textContent = choice
+                    tspOptions.textContent = choice
                     // add an event listener to make choices button clickable
                     // this is not working, it removed my buttons
-                    bookMovieOptions.addEventListener('click', () => {
+                    tspOptions.addEventListener('click', () => {
                          // displayMessage.textContent = ''
-                        if (index != booksMoviesInfo.length)
+                        if (index2 != tspInfo.length)
                         {
-                         displayMessage.textContent +=' '+ booksMoviesInfo[index].answer
+                         displayMessage.textContent +=' '+ tspInfo[index2].answer
                          console.log(`Button clicked: ${choice}`)
                          
-                         checkResponse(booksMoviesInfo[index], choice, displayMessage)
+                         index2 = checkResponse(tspInfo[index2], choice, displayMessage, index2, 2)
                         }
                     })
                     //append the new button to the choices element
-                    choices.appendChild(bookMovieOptions)
+                    choices.appendChild(tspOptions)
                })
           }
-          else if (index == booksMoviesInfo.length)
+          else if (index2 == tspInfo.length)
           {
-               checkGameOver()
+               checkGameOver1()
           }
+})
+
+document.getElementById('playButton').addEventListener('click', () =>{
+     audio.play()
+})
+document.getElementById('pauseButton').addEventListener('click', () =>{
+     audio.pause()
 })

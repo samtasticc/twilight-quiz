@@ -211,7 +211,7 @@ function checkResponse(bookInfo, userChoice, response, questionNum, score) {
      let quiz = bookInfo.question
      let answer = bookInfo.answer
      if (answer == userChoice) {
-          response.textContent = 'correct'
+          response.textContent = 'Correct!'
           if (score == 1) {
                userScore++
           }
@@ -219,7 +219,7 @@ function checkResponse(bookInfo, userChoice, response, questionNum, score) {
                userScore2++
           }
      } else {
-          response.textContent = 'incorrect '
+          response.textContent = 'Wrong! '
      }
      questionNum++
      let scoreCount = document.getElementById('scorecount')

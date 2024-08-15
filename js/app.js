@@ -172,13 +172,13 @@ booksMovies.addEventListener("click", () => {
      // target the choices of the current booksMovieInfo[index]
      booksMoviesInfo[index].choices.forEach((choice) => {
           console.log(choice)
-          //create a button element 
-          let bookMovie = document.createElement('button')
+          //create a button element for question choices/options
+          let bookMovieOptions = document.createElement('button')
           //assign the new button text content to the choice value
-          bookMovie.textContent = choice
+          bookMovieOptions.textContent = choice
           // add an event listener to... do what? click the answer button?
           //append the new button to the choices element
-          choices.appendChild(bookMovie)
+          choices.appendChild(bookMovieOptions)
      })
 })
 // choices1.addEventListener("click", () =>{
@@ -194,5 +194,12 @@ tsp.addEventListener("click", () => {
      // need the 'click' to register audio and bring up the 'TSP' id/quiz
      console.log('I clicked the tsp button!')
      displayMessage.textContent = tspInfo[index].question
+     choices.replaceChildren()
+     tspInfo[index].choices.forEach((choice) => {
+          console.log(choice)
+          let tspOptions = document.createElement('button')
+          tspOptions.textContent = choice
+          choices.appendChild(tspOptions)
+     })
 })
 

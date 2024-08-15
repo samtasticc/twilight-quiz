@@ -18,29 +18,28 @@ All Things Twilight Quiz
 * Category 2 - TSP
 
 #### User Stories
-* As a user, I want to see a banner at the top of the page so I know I am in the right place.
-* As a user, I want to see the categories of the quiz clearly labeled.
-* As a user, I want to see my selections are registered.
-* As a user, I want visual representations in some questions.
-* As a user, I want to be able to change my selection to * previous answers prior to submitting the quiz.
+* A banner is at the top of the page so the user knows they are in the right place.
+* The categories of the quiz are clearly labeled.
+* The instructions of the game are provided.
+* The user's selections are registered.
+* After each question is answered, a popup displays the points.
+* The user has 15 seconds to read and answer each question.
+* When the timer reaches 0, the player loses. 
 
 #### Pseudocode for the overall gameplay.
-This pseudocode does not need to go into exhaustive detail but should demonstrate that you understand some of the unique challenges you will encounter while building your game.
-* This quiz will provide entertainment for those who enjoy Twilight. 
-* User navigates to site and selects their category.
-    * IF the user clicks the All Books & Movies category:
-    * THEN the button gets a few shades darker/lighter 
-"Bella's Theme" will play (10-15 sec)
-    * IF the user clicks the TSP category:
-    * THEN the button gets a few shades darker/lighter 
-"Decode" by Paramore will play (10-15 sec)
-* Within each category, 15+ questions will be displayed.
-    * IF the user selects their answer:
-        * THEN the button gets a few shades darker/lighter
-        * THEN the next question is available for selection
-    * When the user submits their answers:
-        * THEN the button gets a few shades darker/lighter
-        * Their score will display
+* User navigates to site and selects their category. (Grid/flexbox and buttons)
+* IF the user clicks the All Books/Movies category:  (function and if statement)
+    * THEN the button gets a few shades darker/lighter (event listener)
+    * "Bella's Theme" will play (10-15 sec) (HTMLAudioElement: Audio(), found via MDN web docs)
+* IF the user clicks the TSP category: (function and if statement)
+    * THEN the button gets a few shades darker/lighter (event listener)
+    * "Decode" by Paramore will play (10-15 sec) (HTMLAudioElement: Audio())
+* Within each category, 15+ questions will be displayed. (Grid/flexbox and buttons)
+* IF the user selects their answer before the 15 second timer elapses:
+    * THEN the button gets a few shades darker/lighter (event listener)
+    * THEN the user's score pops up, stating if the won/lost (unsure on this one, google led me to modals)
+    * IF question was correct, they get a point 
+        * ELSE the question was incorrect, they don't get a point
 
 #### Technologies Used
 * HTML
@@ -49,5 +48,6 @@ This pseudocode does not need to go into exhaustive detail but should demonstrat
 
 #### Next Steps
 * Make the audio play/pause buttons smaller
-* Add a timer to the quiz
+* Add specific audio to specific button clicks
 * Create more TSP related questions
+* Create a timer for the entire quiz
